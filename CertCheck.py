@@ -3,14 +3,9 @@ import socket
 
 def get_certificate(hostname, port):
     """
-    Fetches the certificate data from an endpoint and returns a dictionary.
-
-    Args:
-        hostname (str): The hostname of the endpoint.
-        port (int): The port number of the endpoint.
-
-    Returns:
-        dict or None: The certificate data as a dictionary, or None if an error occurs.
+    Pulls certificate data from an endpoint. 
+    Args: hostname (str) & port (int). Hostname s/b host, ip, fqdn. 
+    Returns: The certificate data as a dictionary, or None.
     """
 
     context = ssl.create_default_context()
@@ -27,13 +22,10 @@ def get_certificate(hostname, port):
 
 def print_certificate_info(certificate, sAltName=False):
     """
-    Prints the certificate information in a user-friendly format, excluding
-    "subjectAltName" by default and presenting the "subject" key without "commonName".
-
-    Args:
-        certificate (dict): The certificate data dictionary.
-        sAltName (bool, optional): Whether to print the "subjectAltName" information.
-            Defaults to False.
+    Prints the certificate information. 
+    Unpack "subject" tuple
+    Exclude "subjectAltName" (mvp+ optional arg, bool) 
+    Args: certificate (dict). subjectAltName False by default
     """
 
     for key, value in certificate.items():
@@ -45,7 +37,6 @@ def print_certificate_info(certificate, sAltName=False):
         elif key != "subjectAltName" or sAltName:
             print(f"{key}: {value}")
 
-
 # Example usage
 hostname = "www.example.com"
 port = 443  # Assuming HTTPS
@@ -54,7 +45,6 @@ certificate = get_certificate(hostname, port)
 
 if certificate:
     print_certificate_info(certificate)
-    # print("\n--- OR with subjectAltName ---")
     # print_certificate_info(certificate, sAltName=True)
 else:
     print("Failed to retrieve certificate.")
