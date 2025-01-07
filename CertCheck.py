@@ -34,6 +34,11 @@ def print_certificate_info(certificate, sAltName=False):
             for inner_tuple in value:
                 for inner_key, inner_value in inner_tuple:
                     print(f"  {inner_key}: {inner_value}")
+        elif key == "issuer":
+            print("Issuer:")
+            for inner_tuple in value:
+                for inner_key, inner_value in inner_tuple:
+                    print(f"  {inner_key}: {inner_value}")
         elif key != "subjectAltName" or sAltName:
             print(f"{key}: {value}")
 
