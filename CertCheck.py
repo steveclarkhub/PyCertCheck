@@ -19,7 +19,6 @@ def get_certificate(hostname, port):
             print(f"Error fetching certificate: {e}")
             return None
 
-
 def print_certificate_info(certificate, sAltName=False):
     """
     Prints the certificate information. 
