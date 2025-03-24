@@ -42,7 +42,7 @@ def print_certificate_info(certificate, sAltName=False):
             print(f"{key}: {value}")
 
 # Example usage
-hostname = "www.example.com"
+hostname = "www.usda.gov"
 port = 443  # Assuming HTTPS
 
 certificate = get_certificate(hostname, port)
